@@ -5,13 +5,21 @@ DEBUG=0
 
 if [ $DEBUG == 1 ]; then
 	echo ""
-	echo "Debug Mode: ON"
+	echo '###################################################################################'¬
+	echo '#                                                                                 #'
+	echo '#                                                                                 #'
+	echo '#                              Debug Mode: ON                                     #'¬
+	echo '#                                                                                 #'
+	echo '#                                                                                 #'
+	echo '###################################################################################'¬
 	echo ""
 fi
 
+echo ""
 echo '###################################################################################'¬
 echo '# Zimbra zcs-export.sh  ver 0.0.1                                                 #'¬
 echo '###################################################################################'¬
+echo ""
 
 echo ""
 echo -n "Enter Domain Name (ex : zimbra.com) : "
@@ -48,9 +56,11 @@ if [ $DEBUG == 1 ]; then
 	exit
 fi
 
+echo ""
 echo '###################################################################################'¬
 echo '# Zimbra zcs-cos-export.sh ver 0.0.1                                              #'¬
 echo '###################################################################################'¬
+echo ""
 
 #echo -n "Enter working output folder for COS (eg: /tmp/zimbra/) : "
 #read outputFolder
@@ -76,26 +86,17 @@ rm $cosFolder/*.tmp
 chown zimbra:zimbra $cosFolder/*
 
 echo ""
-echo "Export Done!!"
+echo "COS Done!!"
 
+echo ""
 echo "###################################################################################"
 echo "# Zimbra export-acc-zcs.sh ver 0.0.2                                              #"
-echo "# Skrip untuk export account Zimbra berikut profile dan password                  #"
-echo "# Masim 'Vavai' Sugianto - vavai@vavai.com - http://www.vavai.com                 #"
-echo "# Untuk saran dan pertanyaan silakan menggunakan Milis Komunitas Zimbra Indonesia #"
-echo "# Link Komunitas : http://www.zimbra.web.id - http://www.opensuse.or.id           #"
 echo "###################################################################################"
+echo ""
 
 # /* Variable untuk bold */
 ibold="\033[1m""\n===> "
 ebold="\033[0m"
-
-# /* Parameter */
-#echo ""
-#echo -n "Enter Domain Name (ex : vavai.com) : "
-#read NAMA_DOMAIN
-#echo -n "Enter path folder for exported account (ex : /home/vavai/) : "
-#read FOLDER
 FOLDER=$outputFolder
 
 # /* Membuat file hasil export dan mengisi nama domain */
@@ -182,12 +183,16 @@ else
 fi
 
 done
+echo ""
 echo $ibold"All account has been exported sucessfully into $NAMA_FILE and $LDIF_FILE..."$ebold
+echo ""
 
 
+echo ""
 echo '###################################################################################'¬
 echo '# Zimbra zcs-mail-export.sh ver 0.0.1                                             #'¬
 echo '###################################################################################'¬
+echo ""
 
 #echo -n "Enter working output folder for Mail (eg: /tmp/zimbra/) : "
 #read outputFolder
@@ -218,5 +223,7 @@ done
 chown zimbra:zimbra $mailFolder/*
 
 echo ""
-echo "Export Done!!"
-
+echo "Mail Done!!"
+echo ""
+echo "-------------------- Export Complete !! --------------------"
+echo ""

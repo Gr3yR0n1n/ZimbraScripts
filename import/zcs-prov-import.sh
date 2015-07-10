@@ -82,7 +82,7 @@ arr=$(echo $dListFileList | tr " " "\n");
 for dlistFile in $arr
 do
 	echo "Importing $dlistFile"
-	/opt/zimbra/bin/zmprov < $dlistFolder/dlistFile
+	/opt/zimbra/bin/zmprov < $dlistFolder/$dlistFile
 done
 
 echo ""

@@ -17,7 +17,7 @@ fi
 
 echo ""
 echo '###################################################################################'¬
-echo '# Zimbra zcs-export.sh  ver 0.0.1                                                 #'¬
+echo '# Zimbra zcs-dlist-export.sh  ver 0.0.1                                                 #'¬
 echo '###################################################################################'¬
 echo ""
 
@@ -44,7 +44,7 @@ do
 	/opt/zimbra/bin/zmprov gdl $dlistName | grep zimbraMailForwardingAddress > $dlistFolder/$dlistName.tmp
 	cat $dlistFolder/$dlistName.tmp | sed 's/zimbraMailForwardingAddress: //g' |
 	while read member; do
-		echo "/opt/zimbra/bin/zmprov adlm $dlistName $member" >> $dlistFolder/$dlistName
+		echo "adlm $dlistName $member" >> $dlistFolder/$dlistName
 	done
 done
 rm $dlistFolder/*.tmp
@@ -158,6 +158,7 @@ givenName=`/opt/zimbra/bin/ldapsearch -H $LDAP_MASTER_URL -w $ZIMBRA_LDAP_PASSWO
 
 userPassword=`/opt/zimbra/bin/ldapsearch -H $LDAP_MASTER_URL -w $ZIMBRA_LDAP_PASSWORD -D uid=zimbra,cn=admins,cn=zimbra -x $OBJECT | grep userPassword: | cut -d ':' -f3 | sed 's/^ *//g' | sed 's/ *$//g'`
 
+
 cn=`/opt/zimbra/bin/ldapsearch -H $LDAP_MASTER_URL -w $ZIMBRA_LDAP_PASSWORD -D uid=zimbra,cn=admins,cn=zimbra -x $OBJECT | grep cn: | cut -d ':' -f2 | sed 's/^ *//g' | sed 's/ *$//g'`
 
 initials=`/opt/zimbra/bin/ldapsearch -H $LDAP_MASTER_URL -w $ZIMBRA_LDAP_PASSWORD -D uid=zimbra,cn=admins,cn=zimbra -x $OBJECT | grep initials: | cut -d ':' -f2 | sed 's/^ *//g' | sed 's/ *$//g'`
@@ -171,11 +172,11 @@ zimbraIsExternalVirtualAccount=`/opt/zimbra/bin/ldapsearch -H $LDAP_MASTER_URL -
 	else
 		echo "createAccount $NAME passwordtemp displayName '$displayName' givenName '$givenName' sn '$sn' initials '$initials' zimbraIsExternalVirtualAccount '$zimbraIsExternalVirtualAccount' zimbraPasswordMustChange FALSE" >> $NAMA_FILE
 
-    		echo "$dn
-changetype: modify
-replace: userPassword
-userPassword: $userPassword
-" >> $LDIF_FILE
+#    		echo "$dn
+#changetype: modify
+#replace: userPassword
+#userPassword: $userPassword
+#" >> $LDIF_FILE
     		echo "Adding account $NAME"
 	fi
 else
@@ -183,6 +184,9 @@ else
 fi
 
 done
+
+zmprov -l gaa -v $DOMAIN | egrep "^# name |userPassword" | tr '\n' ' ' | tr '#' '\n' | sed 's/^ name/ma/' | tr -d ':' | egrep userPassword > $LDIF_FILE
+
 echo ""
 echo $ibold"All account has been exported sucessfully into $NAMA_FILE and $LDIF_FILE..."$ebold
 echo ""

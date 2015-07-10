@@ -21,8 +21,8 @@ echo '# Zimbra zcs-mail-export.sh ver 0.0.1                                     
 echo '###################################################################################'¬
 echo ""
 
-#echo -n "Enter working output folder for Mail (eg: /tmp/zimbra/) : "
-#read outputFolder
+echo -n "Enter working output folder for Mail (eg: /tmp/zimbra/) : "
+read outputFolder
  
 mailFolder=$outputFolder'/mail'
 # Create Mail Folder

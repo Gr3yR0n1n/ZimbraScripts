@@ -26,7 +26,7 @@ read inputFolder
 
 # Create COS
 cosFolder=$inputFolder'/cos'
-cosList=`cat $cosFolder/cos.list`
+cosList=`cat $cosFolder/cos.lst`
 
 arr=$(echo $cosList | tr " " "\n");
 for cosName in $arr

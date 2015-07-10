@@ -41,7 +41,8 @@ arr=$(echo $cosFileList | tr " " "\n");
 for cosFile in $arr
 do
 	echo "Importing $cosFile"
-	su - zimbra - c 'zmprov -l < '$cosFile
+	#su - zimbra - c 'zmprov -l < '$cosFile
+	'/opt/zimbra/bin/zmprov -l < '$cosFile
 done
 
 echo ""

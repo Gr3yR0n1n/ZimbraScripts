@@ -54,13 +54,17 @@ echo '# Zimbra zcs-acc-import.sh                                                
 echo '###################################################################################'
 echo ""
 
+echo ""
 echo "Importing account..."
+echo ""
 
 ZIMBRA_LDAP_PASSWORD=`/opt/zimbra/bin/zmlocalconfig -s zimbra_ldap_password | cut -d ' ' -f3`
 /opt/zimbra/bin/zmprov < $inputFolder/zcs-acc-add.zmp
 
+echo ""
 echo "Modify password..."
 /opt/zimbra/bin/zmprov < $inputFolder/zcs-acc-mod.ldif
+echo ""
 
 echo ""
 echo " Accounts Import Done !! "
@@ -72,7 +76,7 @@ echo '# Zimbra zcs-dlist-import.sh                                              
 echo '###################################################################################'
 echo ""
 
-dlistFolder=$outputFolder'/dlist'
+dlistFolder=$inputFolder'/dlist'
 dlistFileList=`ls $dlistFolder/`
 arr=$(echo $dListFileList | tr " " "\n");
 for dlistFile in $arr

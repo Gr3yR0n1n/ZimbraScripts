@@ -23,7 +23,14 @@ echo ""
 
 echo -n "Enter working output folder for Mail (eg: /tmp/zimbra/) : "
 read outputFolder
- 
+echo -n "Enter destination server : "
+read destServer
+echo -n "Enter destination user : "
+read destUser
+echo - "Enter destination password : "
+read destPassword
+
+
 mailFolder=$outputFolder'/mail'
 # Create Mail Folder
 echo "Creating Mail output folder: $mailFolder"
@@ -43,6 +50,15 @@ do
 		#su - zimbra -c 'zmprov -l gc '$cosName' > '$cosFolder'/'$cosName'.tmp'
 		#cat $cosFolder/$cosName.tmp | sed 's/^/mc '$cosName' /g' | sed 's/: / /g' > $cosFolder/$cosName.cos
 		/opt/zimbra/bin/zmmailbox -z -m $userName getRestURL "//?fmt=tgz" > $mailFolder/$userName.tgz
+
+		echo "Moving $mailFolder/$userName.tgz to $destServer"
+		from=$mailFolder'/'$userName'.tgz'
+		to=$destUser@$destServer
+		./zcs-mail-copy.sh $from $to $destPassword 
+
+		echo "Removing mailbox backup for : $mailFolder/$userName.tgz"
+		echo ""
+
 	fi
 done
 

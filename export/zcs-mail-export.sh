@@ -27,9 +27,9 @@ echo -n "Enter destination server : "
 read destServer
 echo -n "Enter destination user : "
 read destUser
-echo - "Enter destination password : "
+echo -n "Enter destination password : "
 read destPassword
-echo -n "Enter destination folder: "
+echo -n "Enter destination folder : "
 read destFolder
 
 
@@ -61,7 +61,6 @@ do
 		echo "Removing mailbox backup for : $mailFolder/$userName.tgz"
 		echo ""
 		rm $mailFolder/$userName.tgz
-
 	fi
 done
 

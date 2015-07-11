@@ -40,7 +40,7 @@ arr=$(echo $dlist | tr " " "\n")
 for dlistName in $arr
 do
 	echo "Exporting $dlistName"
-	echo "/opt/zimbra/bin/zmprov cdl $dlistName" > $dlistFolder'/'$dlistName
+	echo "cdl $dlistName" > $dlistFolder'/'$dlistName
 	/opt/zimbra/bin/zmprov gdl $dlistName | grep zimbraMailForwardingAddress > $dlistFolder/$dlistName.tmp
 	cat $dlistFolder/$dlistName.tmp | sed 's/zimbraMailForwardingAddress: //g' |
 	while read member; do

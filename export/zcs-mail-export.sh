@@ -29,6 +29,8 @@ echo -n "Enter destination user : "
 read destUser
 echo - "Enter destination password : "
 read destPassword
+echo -n "Enter destination folder: "
+read destFolder
 
 
 mailFolder=$outputFolder'/mail'
@@ -53,7 +55,7 @@ do
 
 		echo "Moving $mailFolder/$userName.tgz to $destServer"
 		from=$mailFolder'/'$userName'.tgz'
-		to=$destUser@$destServer
+		to=$destUser@$destServer:$destFolder
 		./zcs-mail-copy.sh $from $to $destPassword 
 
 		echo "Removing mailbox backup for : $mailFolder/$userName.tgz"

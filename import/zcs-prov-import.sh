@@ -79,7 +79,7 @@ echo ""
 
 dlistFolder=$inputFolder'/dlist'
 dlistFileList=`ls $dlistFolder/`
-arr=$(echo $dListFileList | tr " " "\n");
+arr=$(echo $dlistFileList | tr " " "\n");
 for dlistFile in $arr
 do
 	echo "Importing $dlistFile"

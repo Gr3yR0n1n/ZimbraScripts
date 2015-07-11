@@ -30,7 +30,7 @@ read outputFolder
 dlistFolder=$outputFolder'/dlist'
 
 # Ccreate DList Folder
-echo "Creating DList output folder: $dlsitFolder"
+echo "Creating DList output folder: $dlistFolder"
 su - zimbra -c 'mkdir '$dlistFolder
 
 echo "Retrieving DList"
@@ -95,8 +95,6 @@ echo "##########################################################################
 echo ""
 
 # /* Variable untuk bold */
-ibold="\033[1m""\n===> "
-ebold="\033[0m"
 FOLDER=$outputFolder
 
 # /* Membuat file hasil export dan mengisi nama domain */
@@ -120,7 +118,7 @@ ZIMBRA_LDAP_PASSWORD=`su - zimbra -c "zmlocalconfig -s zimbra_ldap_password | cu
 touch $ZCS_VER
 echo $VERSION > $ZCS_VER
 
-echo $ibold"Retrieve Zimbra User.............................."$ebold
+echo "Retrieve Zimbra User.............................."
 
 #grep "Release 8." $ZCS_VER
 #if [ $? = 0 ]; then
@@ -185,10 +183,10 @@ fi
 
 done
 
-zmprov -l gaa -v $DOMAIN | egrep "^# name |userPassword" | tr '\n' ' ' | tr '#' '\n' | sed 's/^ name/ma/' | tr -d ':' | egrep userPassword > $LDIF_FILE
+/opt/zimbra/bin/zmprov -l gaa -v $DOMAIN | egrep "^# name |userPassword" | tr '\n' ' ' | tr '#' '\n' | sed 's/^ name/ma/' | tr -d ':' | egrep userPassword > $LDIF_FILE
 
 echo ""
-echo $ibold"All account has been exported sucessfully into $NAMA_FILE and $LDIF_FILE..."$ebold
+echo "All account has been exported sucessfully into $NAMA_FILE and $LDIF_FILE..."
 echo ""
 
 

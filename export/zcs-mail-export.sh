@@ -60,6 +60,7 @@ do
 
 		echo "Removing mailbox backup for : $mailFolder/$userName.tgz"
 		echo ""
+		rm $mailFolder/$userName.tgz
 
 	fi
 done
